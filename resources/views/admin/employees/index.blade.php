@@ -1,6 +1,6 @@
 @extends('layoutadmin')
 @section('content')
-<main>
+
 <div class="container">
  <br>
  	 <div class="row">
@@ -53,5 +53,5 @@
    </div> 
  </div>
  </div>
-</main>
+
 @endsection

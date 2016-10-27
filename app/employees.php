@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
-use App\states;
-use App\repertorys;
+namespace fucalibertad;
+use fucalibertad\states;
+use fucalibertad\repertorys;
 use Illuminate\Database\Eloquent\Model;
 
 class employees extends Model

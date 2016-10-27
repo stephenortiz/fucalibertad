@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace fucalibertad;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,5 +11,7 @@ class detailcontents extends Model
          return $this->belongsTo(contents::class);
 
     }
+
+   
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace fucalibertad\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

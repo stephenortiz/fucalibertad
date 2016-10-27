@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace fucalibertad;
 
 use Illuminate\Database\Eloquent\Model;
 

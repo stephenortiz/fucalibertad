@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace fucalibertad\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\contents;
-use App\categories;
-use App\repertorys;
-use App\companys;
-use App\detailcontents;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use fucalibertad\contents;
+use fucalibertad\categories;
+use fucalibertad\repertorys;
+use fucalibertad\companys;
+use fucalibertad\detailcontents;
+use fucalibertad\Http\Requests;
+use fucalibertad\Http\Controllers\Controller;
 use Validator;
 
 class ContentController extends Controller
@@ -21,7 +21,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = contents::paginate(5);
+        $contents = contents::orderBy('id', 'desc')->paginate(5);
         $companys = companys::where('id', 1)->first();
           foreach ($contents as $content) {
               $categories = contents::find($content->id)->categories;
@@ -33,7 +33,8 @@ class ContentController extends Controller
               $content->categories_id=$categories;
           } 
 
-        return view("admin/contents.index", ['content'=>$contents,'company'=>$companys]);
+          
+          return view("admin/contents.index", ['content'=>$contents,'company'=>$companys]);
     }
 
     /**

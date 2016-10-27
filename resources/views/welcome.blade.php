@@ -1,6 +1,9 @@
 @extends('layout')
 @section('content')
 
+
+
+
 @if($parallax != null)
 <div class="slider">
     <ul class="slides">
@@ -28,6 +31,7 @@
    
 
 
+@if($content->categories_id != 6)
 
    <div class="container">
     <div class="section">
@@ -36,16 +40,18 @@
           <h3><i class="mdi-content-send brown-text"></i></h3>
           <h4>{{$content->titulo}}</h4>
           <p class="center-align light">
-            {{$content->descripcion}}
+            {!!$content->descripcion!!}
           </p>
         </div>
       </div>
     </div>
   </div>
+@endif
 
   @endforeach
-    
-                
+
+ 
+              
 @endsection
 
 

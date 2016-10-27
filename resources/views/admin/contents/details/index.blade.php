@@ -14,6 +14,7 @@
                    <thead>
 
                    <th data-field="id">Id</th>
+                   <th data-field="id">Contenido</th>
                    <th data-field="name">Titulo</th>
                    <th data-field="name">Descripción</th>
                    <th data-field="name">Imagen</th>
@@ -26,6 +27,7 @@
                    @foreach ($details as $detail)
                    <tr>
                    <td>{{$detail->id}}</td>
+                   <td>{{$detail->contents_id}}</td>
                    <td>{{$detail->titulo}}</td>
                    <td>{{$detail->descripcion}}</td>
                    <td>{{$detail->descripcion}}</td>

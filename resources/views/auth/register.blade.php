@@ -1,20 +1,21 @@
-@extends('layout')
+
+@extends('layoutLogin')
 
 @section('content')
 
 
-<div class="section"></div>
+
   <main>
     <center>
-
       <h5 class="indigo-text blue-text">Registrar Cuenta</h5>
-      <div class="section"></div>
+
 
       <div class="container">
         <div class="z-depth-4 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 68px; border: 1px solid #EEE;">
 
           <form class="col s12" action="{{ url ('/auth/register') }}" method="POST" accept-charset="UTF-8">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="roles_id" value="1">
 
             <div class='row'>
               <div class='col s12'>
@@ -70,4 +71,3 @@
    
 
 
-@endsection

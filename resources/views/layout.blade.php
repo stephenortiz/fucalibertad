@@ -54,19 +54,25 @@
 
             <div class="container">
             <div class="row">
-                          <div class="col m6  s12">
+                <div class="col m4  s12">
                 <h5 class="white-text">Redes Sociales</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#"><a href="https://www.facebook.com/Fundacioncaminodelibertad" class="brand-logo"><img src="img/facebook-icon.png" ></a></a></li>
                 </ul>
               </div>
-              <div class="col m6  s12">
+              <div class="col m4  s12">
                 <h5 class="white-text">Contacto</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Telefono: {{$company->telefono}}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Fundación Camino De Libertad</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Email: {{$company->email}}</a></li>
                 </ul>
               </div>
+              <div class="col m4  s12">
+                <h5 class="white-text">Portal</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3 material-icons" href="{{asset('auth/login')}}">supervisor_account</a></li>
+                </ul>
+              </div> 
 
             </div>
           </div>
@@ -110,6 +116,17 @@
            Materialize.updateTextFields();
            });
      	  </script>
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+          // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+          $('.modal-trigger').leanModal();
+        });
+      
+
+          
+        </script>
+
 
      </body>
 

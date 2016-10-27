@@ -1,7 +1,9 @@
 @extends('layoutadmin')
 @section('content')
 
+
      <div class="container">
+
        <br>
  	     <div class="row">
 
@@ -18,6 +20,7 @@
               <th data-field="name">Categoria</th>
               <th data-field="name">Menu</th>
               <th data-field="name">Url</th>
+              <th>Detalles</th>
               <th></th>
           </tr>
         </thead>
@@ -37,7 +40,17 @@
             <td>{{$contenido->repertorys_id->descripcion}}</td>
             <td>{{$contenido->url}}</td>
             <td>
-            <a href="{{url('admin/contents/'.$contenido->id.'/edit')}}" class="large material-icons">editar</a>
+            @if(!$contenido->content_id->isEmpty())
+            <a href="{{url('admin/details/'.$contenido->id.'/show')}}" class="large material-icons tooltipped"  data-position="top" data-delay="50" data-tooltip="visualizar detalles">visibility</a>
+            <i class="tooltipped"  data-position="top" data-delay="50" data-tooltip="cantidad de detalles"> {{$contenido->content_id->count()}}</i>
+            @endif
+            </td>
+            <td>
+            <a href="{{url('admin/contents/'.$contenido->id.'/edit')}}" class="large material-icons tooltipped" data-position="top" data-delay="50" data-tooltip="editar Contenido">editar</a>
+            </td>
+            <td>
+            <a href="{{url('admin/details/'.$contenido->id.'/addDetail')}}" id="detalle_" class="large material-icons tooltipped" data-position="top" data-delay="50" data-tooltip="Agregar Detalles">note_add</a>
+           
             </td>
           </tr>
         @endforeach
@@ -50,6 +63,8 @@
       {!! $content->render() !!} 
        
       </div>
+
+   
 
          </div>
      </div>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace fucalibertad\Http\Controllers\Auth;
 
-use App\User;
+use fucalibertad\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use fucalibertad\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -23,7 +23,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectPath = '/admin';
+    protected $redirectPath = '/admin/welcome';
 
     /**
      * Create a new authentication controller instance.
@@ -61,7 +61,10 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'roles_id' => $data['roles_id'],
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    
 }

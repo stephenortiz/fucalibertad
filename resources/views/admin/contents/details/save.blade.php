@@ -44,16 +44,34 @@
 
              <div class="input-field col s12">
              <select class="browser-default" name="contents_id">
-                 <option value="" >Selección Una Opción</option>
+                 
+        
+             
+                <option value="" >Selección Una Opción</option>
                 @foreach($contents as $content)
+                
+                @if($detail->contents_id != null)
 
                 @if($content->id == $detail->contents_id)
-                <option value="{{$content->id}}" data-icon="{{ asset('storafe/'.$content->imagen) }}" selected="selected">{{$content->descripcion}}</option>
+
+
+                <option value="{{$content->id}}" data-icon="{{ asset('storafe/'.$content->imagen) }}" selected="selected">{{$content->id}} || {{$content->titulo}} || {{$content->descripcion}}</option>
                 @else
                 <option value="{{$content->id}}"  >{{$content->id}} || {{$content->titulo}} || {{$content->descripcion}}</option>
                 @endif
+                 
+               
 
-                @endforeach
+              @else
+
+              <option value="{{$content->id}}"  >{{$content->id}} || {{$content->titulo}} || {{$content->descripcion}}</option>
+
+              @endif
+
+               @endforeach
+
+
+
             </select>
              @if($errors->first('contents_id'))
                   <i class="red-text">{{$errors->first('contents_id')}}</i>

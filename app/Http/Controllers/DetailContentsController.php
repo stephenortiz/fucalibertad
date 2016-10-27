@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace fucalibertad\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\detailcontents;
-use App\contents;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use fucalibertad\detailcontents;
+use fucalibertad\contents;
+use fucalibertad\Http\Requests;
+use fucalibertad\Http\Controllers\Controller;
 use Validator;
 
 class DetailContentsController extends Controller
@@ -100,7 +100,28 @@ class DetailContentsController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $details = detailcontents::where('contents_id',$id)->orderBy('id', 'desc')->paginate(5);
+        foreach ($details as $detail) {
+            $content = detailcontents::find($detail->id)->contents;
+
+            $detail->cotents_id=$content;
+        }
+
+        return view("admin/contents/details.index", ['details'=>$details]);
+
+    }
+
+    public function addDetail($id){
+
+      $details = new detailcontents;
+      $contents = contents::all();
+      $contentsid = contents::find($id)->first();
+      $details->id = null;
+      $details->contents_id = $id;
+
+      return view("admin/contents/details.save",['detail'=>$details, 'contents'=>$contents]);
+
     }
 
     /**
@@ -112,7 +133,9 @@ class DetailContentsController extends Controller
     public function edit($id)
     {
         $contents = contents::all();
+        $contentsDetail = new contents;
         $details = detailcontents::where('id', $id)->first();
+        
         return view("admin/contents/details.save",['detail'=>$details, 'contents'=>$contents]);
 
     }

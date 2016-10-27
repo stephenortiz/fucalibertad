@@ -1,7 +1,7 @@
 <?php
 
-namespace App;
-use App\employees;
+namespace fucalibertad;
+use fucalibertad\employees;
 use Illuminate\Database\Eloquent\Model;
 
 class repertorys extends Model

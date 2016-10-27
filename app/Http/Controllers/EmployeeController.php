@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace fucalibertad\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\employees;
-use App\repertorys;
-use App\states;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use fucalibertad\employees;
+use fucalibertad\repertorys;
+use fucalibertad\states;
+use fucalibertad\Http\Requests;
+use fucalibertad\Http\Controllers\Controller;
 use Validator;
 
 class EmployeeController extends Controller

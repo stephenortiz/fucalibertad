@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace fucalibertad\Events;
 
 abstract class Event
 {

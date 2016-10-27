@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace fucalibertad\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\repertorys;
-use App\companys;
-use App\contents;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use fucalibertad\repertorys;
+use fucalibertad\companys;
+use fucalibertad\contents;
+use fucalibertad\employees;
+use fucalibertad\contacts;
+use Validator;
+use fucalibertad\Http\Requests;
+use fucalibertad\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -23,7 +26,7 @@ class HomeController extends Controller
           $repertorys = repertorys::all()->sortByDesc("id");
           $companys = companys::all()->first();
           $contents = contents::all()->where('repertorys_id',1)->sortBy("id");
-          $parallax = contents::all()->where('categories_id',4)->sortBy("id");
+          $parallax = contents::all()->where('categories_id',6)->sortBy("id");
           foreach ($contents as $content) {
               $details = contents::find($content->id)->details;
               $content->content_id=$details;
@@ -38,7 +41,11 @@ class HomeController extends Controller
      */
     public function quienesomos()
     {
-        //
+        $repertorys = repertorys::all()->sortByDesc("id");
+        $contents = contents::all()->where('repertorys_id',2);
+        $companys = companys::all()->first();
+        $employees = employees::all();
+        return view('foundation/index', ['company'=>$companys,'contents'=>$contents,'repertorys'=>$repertorys, 'employees'=> $employees]);
     }
 
          
@@ -57,59 +64,66 @@ class HomeController extends Controller
           return view('galleries/index', ['company'=>$companys,'contents'=>$contents,'repertorys'=>$repertorys]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function programas(){
+         $repertorys = repertorys::all()->sortByDesc("id");
+         $contents = contents::all()->where('repertorys_id',3);
+         $companys = companys::all()->first();
+         return view('programs/index', ['company'=>$companys,'contents'=>$contents,'repertorys'=>$repertorys]);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function contacto(){
+         $repertorys = repertorys::all()->sortByDesc("id");
+         $companys = companys::all()->first();
+         $contacts = new contacts;
+         return view('contacts/index', ['company'=>$companys,'contacts'=>$contacts,'repertorys'=>$repertorys]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function email(Request $request){
+
+          $validator = Validator::make($request->all(),[ 
+         'nombre'   => 'required|min:3',
+         'telefono'   => 'required',
+         'email'   => 'required|email',
+         'subject'   => 'required|min:3',
+         'descripcion'   => 'required|min:3',
+         ]);
+
+        if ($validator->fails()) {
+        return redirect('contacto')
+            ->withErrors($validator)
+            ->withInput ();
+       }
+
+         $contact = new contacts;
+         $contact->nombre       = $request->input('nombre');
+         $contact->telefono       = $request->input('telefono');
+         $contact->email       = $request->input('email');
+         $contact->subject       = $request->input('subject');
+         $contact->descripcion       = $request->input('descripcion');    
+         $contact->save();
+
+
+         $data = $request->all();
+
+         //se envia el array y la vista lo recibe en llaves individuales {{ $email }} , {{ $subject }}...
+         \Mail::send('emails.message', $data, function($message) use ($request)
+         {
+           //remitente
+           $message->from($request->email, $request->name);
+ 
+           //asunto
+           $message->subject($request->subject);
+ 
+           //receptor
+           $message->to(env('CONTACT_MAIL'), env('CONTACT_NAME'));
+ 
+         });
+
+         return \View::make('emails.success');
+
+
+       
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

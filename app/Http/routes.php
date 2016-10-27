@@ -12,9 +12,10 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/ser', 'HomeController@quienesomos');
-Route::get('/programa', 'HomeController@programas');
-Route::get('/galeria', 'HomeController@galerias');
-Route::get('/contacto', 'HomeController@contactos');
+Route::get('/programas', 'HomeController@programas');
+Route::get('/galerias', 'HomeController@galerias');
+Route::get('/contacto', 'HomeController@contacto');
+Route::post('/contacto', 'HomeController@email');
 
 //Route::get('auth/login', 'Auth\AuthController@getLogin','as'=>'login']);
 
@@ -22,17 +23,22 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register','Auth\AuthController@postRegister');
-
-Route::get('admin', 'AdminController@index');
-
+//Route::post('auth/register','Auth\AuthController@postRegister');
 
 Route::get('auth/logout',function(){
  Auth::logout();
  return redirect('/');
 });
 
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
 
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+Route::get('/admin/welcome', 'AdminController@index');
 Route::get('admin/companys', 'CompanyController@index');
 Route::post('admin/companys','CompanyController@store');
 Route::post('admin/companys/{id}','CompanyController@update');
@@ -68,6 +74,11 @@ Route::get('admin/contents/create', 'ContentController@create');
 Route::post('admin/contents', 'ContentController@store');
 Route::get('admin/contents/{content}/edit', 'ContentController@edit');
 Route::post('admin/contents/{id}', 'ContentController@update');
+
+//detalle por contenido
+
+Route::get('admin/details/{content}/show', 'DetailContentsController@show');
+Route::get('admin/details/{content}/addDetail', 'DetailContentsController@addDetail');
 
 //detalle contenido
 

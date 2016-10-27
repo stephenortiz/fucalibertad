@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace fucalibertad\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\categories;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use fucalibertad\categories;
+use fucalibertad\Http\Requests;
+use fucalibertad\Http\Controllers\Controller;
 use Validator;
 
 class CategoryController extends Controller

@@ -35,9 +35,9 @@
              <div class=" col s12">
              <label>Descripción</label>
              @if($content->id == null)
-             <textarea id="textarea1" name="descripcion" class="materialize-textarea">{{old('descripcion')}}</textarea>
+             <textarea id="editor1"  name="descripcion" class="materialize-textarea ckeditor">{{old('descripcion')}}</textarea>
              @else
-             <textarea id="textarea1" name="descripcion" class="materialize-textarea">{{$content->descripcion}}</textarea>
+             <textarea id="editor1"  name="descripcion" class="materialize-textarea  ckeditor">{{$content->descripcion}}</textarea>
              @endif
              </div>
              @if($errors->first('descripcion'))
