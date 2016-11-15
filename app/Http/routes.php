@@ -16,6 +16,9 @@ Route::get('/programas', 'HomeController@programas');
 Route::get('/galerias', 'HomeController@galerias');
 Route::get('/contacto', 'HomeController@contacto');
 Route::post('/contacto', 'HomeController@email');
+Route::get('/blog/{id}', 'HomeController@blog');
+Route::get('/programa/{id}', 'HomeController@ProgramDetail');
+
 
 //Route::get('auth/login', 'Auth\AuthController@getLogin','as'=>'login']);
 
@@ -43,7 +46,9 @@ Route::get('admin/companys', 'CompanyController@index');
 Route::post('admin/companys','CompanyController@store');
 Route::post('admin/companys/{id}','CompanyController@update');
 
-//empleados
+Route::group(['middleware' => 'auth'], function () {
+
+//empleados 
 
 Route::get('admin/employees', 'EmployeeController@index');
 Route::get('admin/employees/create', 'EmployeeController@create');
@@ -51,13 +56,14 @@ Route::post('admin/employees', 'EmployeeController@store');
 Route::get('admin/employees/{employees}/edit', 'EmployeeController@edit');
 Route::post('admin/employees/{id}', 'EmployeeController@update');
 
+
 //menus
 
-Route::get('admin/menues', 'MenuController@index');
-Route::get('admin/menues/create', 'MenuController@create');
-Route::post('admin/menues', 'MenuController@store');
-Route::get('admin/menues/{menu}/edit', 'MenuController@edit');
-Route::post('admin/menues/{id}', 'MenuController@update');
+Route::get('admin/menues', 'RepertoryController@index');
+Route::get('admin/menues/create', 'RepertoryController@create');
+Route::post('admin/menues', 'RepertoryController@store');
+Route::get('admin/menues/{menu}/edit', 'RepertoryController@edit');
+Route::post('admin/menues/{id}', 'RepertoryController@update');
 
 //categorias
 
@@ -87,6 +93,18 @@ Route::get('admin/details/create', 'DetailContentsController@create');
 Route::post('admin/details', 'DetailContentsController@store');
 Route::get('admin/details/{detail}/edit', 'DetailContentsController@edit');
 Route::post('admin/details/{id}', 'DetailContentsController@update');
+
+});
+
+
+
+
+
+
+
+
+
+
 
 
 

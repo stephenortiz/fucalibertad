@@ -15,7 +15,6 @@
         <div class="caption right-align">
           <h3 class= "black-text"></h3>
           <h4 class="light black-text text-lighten-3"></h5>
-          <a class="waves-effect blue waves-light btn">Saber mas</a>
         </div>
       </li>
     
@@ -27,28 +26,68 @@
 
    
 
-   @foreach($contents as $content)
+@if(@texts != null)
+@foreach($texts as $text)
    
-
-
-@if($content->categories_id != 6)
-
-   <div class="container">
+<div class="container">
     <div class="section">
       <div class="row">
         <div class="col s12 center">
           <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>{{$content->titulo}}</h4>
+          <h4>{{$text->titulo}}</h4>
           <p class="center-align light">
-            {!!$content->descripcion!!}
+            {!!$text->descripcion!!}
           </p>
         </div>
       </div>
     </div>
   </div>
+@endforeach
 @endif
 
-  @endforeach
+@if($blogs != null)
+<div class="container">
+   
+     <div class="row">
+@foreach($blogs as $blog)
+
+<div class="col s12 m4">
+   
+     <div class="card medium">
+
+                    <div class="card-image">
+                        <img src="{{ asset('storage/'.$blog->imagen)}}">
+                        <span class="card-title ">{{$blog->titulo}}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>{!! str_limit($blog->descripcion, 150) !!} </p>
+                       
+                    </div>
+                    <div class="card-action">
+                        <a href="{{url('blog/'.$blog->id)}}" class="blue-text text-darken-2">Saber mas.</a>
+                    </div>
+
+     </div>
+
+</div>
+
+
+@endforeach
+<div class="col s12">
+{!!  $blogs->render() !!}
+</div>
+</div>
+</div>
+@endif
+
+<div class="container">
+
+      <div class="video-container">
+        <iframe width="853" height="480" src="https://www.youtube.com/embed/nHsJrwP3Oyo" frameborder="0" allowfullscreen></iframe>
+      </div>
+</div>   
+
+
 
  
               

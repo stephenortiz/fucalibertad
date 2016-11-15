@@ -24,29 +24,30 @@
 
      <body>
 
-         <nav class="grey lighten-2" role="navigation">
-             <div class="nav-wrapper container">
-                 <a href="#" class="brand-logo"><img src="{{ asset('img/logoFundacion.png')}}" width="70"></a>
-                 <a href="#" data-activates="mobile" class="button-collapse">
-                     <i class="mdi-navigation-menu"></i>
-                 </a>
-                 @foreach ($repertorys as $repertory)
+        <nav class="grey lighten-2" role="navigation">
+    <div class="nav-wrapper container">
+       <a href="/" class="brand-logo responsive-img"><img src="{{ asset('img/logoFundacion.png')}}" width="70"></a>
+      @foreach ($repertorys as $repertory)
                  <ul class="right hide-on-med-and-down">
                   <li>
                          <a href="{{$repertory->url}}" class="blue-text text-darken-1">{{$repertory->descripcion}}</a>
                  </li>
 
                  </ul>
-                 @endforeach
-                 @foreach ($repertorys as $repertory)
-                 <ul class="side-nav" id="mobile">
-                <li>
-                         <a href="{{$repertory->url}}" class="blue-text text-darken-1">{{$repertory->descripcion}}</a>
-                 </li>
-                </ul>
-                @endforeach
-             </div>
-         </nav>
+      @endforeach
+
+
+      <ul id="nav-mobile" class="side-nav grey lighten-3">
+      <header class="demo-drawer-header center">
+          <img src="{{ asset('img/logoFundacion.png') }}" class="demo-avatar" width="50%">
+        </header>
+      @foreach ($repertorys as $repertory)
+        <a href="{{$repertory->url}}" class="blue-text text-darken-1">{{$repertory->descripcion}}</a>
+      @endforeach
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons blue-text">menu</i></a>
+    </div>
+  </nav>
 
 @yield('content')
 
@@ -54,23 +55,38 @@
 
             <div class="container">
             <div class="row">
-                <div class="col m4  s12">
+                <div class="col m4 s12">
                 <h5 class="white-text">Redes Sociales</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#"><a href="https://www.facebook.com/Fundacioncaminodelibertad" class="brand-logo"><img src="img/facebook-icon.png" ></a></a></li>
+                  <li>
+                  <a href="https://www.facebook.com/Fundacioncaminodelibertad" class="brand-logo"><img src="{{ asset('img/facebook-icon.png')}}" ></a>
+                   <a href="https://www.facebook.com/fucalibertad" class="brand-logo"><img src="{{ asset('img/facebook-icon2.png')}}" ></a>
+                  </li>
+
                 </ul>
               </div>
               <div class="col m4  s12">
                 <h5 class="white-text">Contacto</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Fundación Camino De Libertad</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Email: {{$company->email}}</a></li>
+                  <li><a href="mailto:{{$company->email}}" target="_top">Email: {{$company->email}}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Dirrección: {{$company->direccion}}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Telefono: {{$company->telefono}}</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Celular: {{$company->celular}}</a></li>
+                  
                 </ul>
               </div>
               <div class="col m4  s12">
                 <h5 class="white-text">Portal</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3 material-icons" href="{{asset('auth/login')}}">supervisor_account</a></li>
+                @if(Auth::guest())
+                  <li>
+ <a class="tooltipped"  data-position="top" data-delay="50" data-tooltip="Ingresar Al Portal" href="{{asset('auth/login')}}"><i class="large material-icons">supervisor_account</i></a>
+                  </li>
+                @else
+                 <li>
+<a class="tooltipped"  data-position="top" data-delay="50" data-tooltip="Ingresar Al Portal" href="{{asset('admin/welcome')}}"><i class="large material-icons">supervisor_account</i></a>
+                 </li>
+                @endif
                 </ul>
               </div> 
 
@@ -97,35 +113,31 @@
          <script type="text/javascript" src="{{asset('gallery/gallery.js')}}"></script>
 -->
          <script type="text/javascript" src="{{asset('materializecss/js/jquery-2.1.1.min.js')}}"></script>
-         <script type="text/javascript" src="{{asset('materializecss/js/materialize.js')}}"></script>
-         <script type="text/javascript" src="{{asset('materializecssjs/init.js')}}"></script>
-         <script type="text/javascript">
+         <script type="text/javascript" src="{{asset('materializecss/js/materialize.min.js')}}"></script>
+       <!--  <script type="text/javascript" src="{{asset('materializecssjs/init.js')}}"></script> -->
+
+           <script type="text/javascript">
+  
            //inicializar el SideNav
-
            $(".button-collapse").sideNav();
-         </script>
-          <script type="text/javascript">
+
            $(document).ready(function(){
-           $('.slider').slider({
-           	full_width: true,
-           	invertal: 1000});
-           });
-     	</script>
-     	<script type="text/javascript">
-     	   $(document).ready(function() {
-           Materialize.updateTextFields();
-           });
-     	  </script>
 
-        <script type="text/javascript">
-          $(document).ready(function(){
-          // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-          $('.modal-trigger').leanModal();
-        });
-      
+            //Slider propiedades
+            $('.slider').slider({
+            full_width: true,
+            invertal: 1000,
+            indicators:false});
 
-          
-        </script>
+            Materialize.updateTextFields();
+
+            $('.modal-trigger').leanModal();
+
+            $('.collapsible').collapsible();
+
+            });
+
+           </script>
 
 
      </body>

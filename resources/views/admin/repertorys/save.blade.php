@@ -5,9 +5,9 @@
   <h3>Formulario de Menus</h3>
 	<div class="row">
     @if($menu->id == null)
-       <form class="col s12" action="{{ url ('/admin/menus') }}" method="POST" accept-charset="UTF-8" >
+       <form class="col s12" action="{{ url ('/admin/repertorys') }}" method="POST" accept-charset="UTF-8" >
     @else
-       <form class="col s12" action="{{ url ('/admin/menus/'.$menu->id ) }}" method="POST" accept-charset="UTF-8" >
+       <form class="col s12" action="{{ url ('/admin/repertorys/'.$menu->id ) }}" method="POST" accept-charset="UTF-8" >
     @endif
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="row">

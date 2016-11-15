@@ -25,13 +25,15 @@ class HomeController extends Controller
           
           $repertorys = repertorys::all()->sortByDesc("id");
           $companys = companys::all()->first();
-          $contents = contents::all()->where('repertorys_id',1)->sortBy("id");
-          $parallax = contents::all()->where('categories_id',6)->sortBy("id");
-          foreach ($contents as $content) {
+          $texts = contents::all()->where('repertorys_id',1)->where('categories_id',1)->sortByDesc("id");
+          $parallax = contents::all()->where('categories_id',6)->sortByDesc("id");
+          $blogs = contents::where('categories_id', 7)->orderBy('id', 'desc')->paginate(6);
+        /*  foreach ($contents as $content) {
               $details = contents::find($content->id)->details;
               $content->content_id=$details;
           }
-          return view('welcome', ['repertorys'=>$repertorys,'company'=>$companys,'contents'=>$contents,'parallax'=>$parallax]);
+        */  
+          return view('welcome', ['repertorys'=>$repertorys,'company'=>$companys,'texts'=>$texts,'parallax'=>$parallax,'blogs'=>$blogs]);
          }
 
     /**
@@ -44,7 +46,7 @@ class HomeController extends Controller
         $repertorys = repertorys::all()->sortByDesc("id");
         $contents = contents::all()->where('repertorys_id',2);
         $companys = companys::all()->first();
-        $employees = employees::all();
+        $employees = employees::where('states_id',1)->get();
         return view('foundation/index', ['company'=>$companys,'contents'=>$contents,'repertorys'=>$repertorys, 'employees'=> $employees]);
     }
 
@@ -120,10 +122,30 @@ class HomeController extends Controller
  
          });
 
-         return \View::make('emails.success');
+         return \View::make('emails.success');  
+    }
+
+    public function blog($id){
 
 
-       
+      $repertorys = repertorys::all()->sortByDesc("id");
+      $companys = companys::all()->first();
+      $contents = contents::find($id);
+      return view('blog.index', ['blog'=>$contents,'repertorys'=>$repertorys,'company'=>$companys]);
+
+    }
+
+    public function programDetail ($id){
+
+      $contents = contents::find($id);
+      $repertorys = repertorys::all()->sortByDesc('id');
+      $companys = companys::all()->first();
+      $contents->content_id=contents::find($contents->id)->details;
+
+//dd($contents);
+      return view('programs.detail', ['program'=>$contents,'repertorys'=>$repertorys,'company'=>$companys]);
+
+
     }
 
 }

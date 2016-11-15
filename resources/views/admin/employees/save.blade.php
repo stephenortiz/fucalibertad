@@ -27,7 +27,7 @@
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
           @if($employe->id == null)
-          <input id="icon_telephone" type="text"  name="apellido"  value="{{old('apellido')}}">
+          <input id="icon_telephone" type="text@if($employe->id == null)"  name="apellido"  value="{{old('apellido')}}">
           @else
           <input id="icon_telephone" type="text"  name="apellido"  value="{{$employe->apellido}}">
           @endif 
@@ -51,13 +51,30 @@
         </div>
         <div class="input-field col s12">
           <i class="material-icons prefix">work</i>
+           @if($employe->id == null)
+          <input id="icon_telephone" type="text"  name="cargo"   value="{{old('cargo')}}">
+          @else
           <input id="icon_telephone" type="text"  name="cargo"   value="{{$employe->cargo}}">
+          @endif
           <label for="icon_telephone">Cargo</label>
           @if($errors->first('cargo'))
           <i class="red-text">{{$errors->first('cargo')}}</i>
           @endif
         </div>
 
+         <div class="col s12"> 
+             <div class=" col s12">
+             <label>Descripción</label>
+             @if($employe->id == null)
+             <textarea id="editor1"  name="descripcion" class="materialize-textarea ckeditor">{{old('descripcion')}}</textarea>
+             @else
+             <textarea id="editor1"  name="descripcion" class="materialize-textarea  ckeditor">{{$employe->descripcion}}</textarea>
+             @endif
+             </div>
+             @if($errors->first('descripcion'))
+             <i class="red-text">{{$errors->first('descripcion')}}</i>
+             @endif
+          </div>
 
     @if($employe->id == null)
      <input type="hidden" name="states_id" value="1">

@@ -41,7 +41,6 @@
             <i class="material-icons">more_vert</i>
           </button>
           <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-            <li class="mdl-menu__item">Admin</li>
             <li class="mdl-menu__item"><a href="{{ asset('auth/logout')}}"> Salir</a></li>
           </ul>
         </div>
@@ -53,7 +52,13 @@
 
 
         <nav class="demo-navigation mdl-navigation blue-grey darken-4 center">
-          <a class="mdl-navigation__link ">Empleados</a>
+          <a href="/admin/contents" class="mdl-navigation__link ">Contenido</a>
+          <a href="/admin/details" class="mdl-navigation__link ">Detalle Contenido</a>
+          <a href="/admin/employees" class="mdl-navigation__link ">Empleados</a>
+          <a href="/admin/categories" class="mdl-navigation__link ">Categorias</a>
+          <a href="/admin/companys" class="mdl-navigation__link ">Empresa</a>
+          <a href="/admin/menues" class="mdl-navigation__link ">Menus</a>
+
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">

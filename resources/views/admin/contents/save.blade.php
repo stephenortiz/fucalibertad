@@ -97,6 +97,27 @@
 
            </div>
 
+           <div class="input-field col s12">
+           <br>
+           <label>Estado</label>
+           </div>
+
+           <div class="input-field col s12">
+             <select class="browser-default" name="states_id">
+                <option value="" disabled="disabled">Selección Una Opción</option>
+                @foreach($states as $state)
+
+                @if($state->id == $content->states_id)
+                <option value="{{$state->id}}" selected="selected">{{$state->descripcion}}</option>
+                @else
+                <option value="{{$state->id}}" >{{$state->descripcion}}</option>
+                @endif
+
+                @endforeach
+            </select>
+           </div>
+
+
            <div class="col s12"> 
              <div class=" col s12">
              <label>Ur<llabel>

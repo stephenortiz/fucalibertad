@@ -19,6 +19,7 @@
               <th data-field="name">Imagen</th>
               <th data-field="name">Categoria</th>
               <th data-field="name">Menu</th>
+              <th data-field="name">Estado</th>
               <th data-field="name">Url</th>
               <th>Detalles</th>
               <th></th>
@@ -30,7 +31,7 @@
           <tr>
             <td>{{$contenido->id}}</td>
             <td>{{$contenido->titulo}}</td>
-            <td>{{$contenido->descripcion}}</td>
+            <td>{!!$contenido->descripcion!!}</td>
             <td> 
             @if(!empty($contenido->imagen))
             <img class="circle responsive-img" src="{{ asset('storage/'.$contenido->imagen)}}" width="70">
@@ -38,6 +39,7 @@
             </td>
             <td>{{$contenido->categories_id->descripcion}}</td>
             <td>{{$contenido->repertorys_id->descripcion}}</td>
+            <td>{{$contenido->states_id->descripcion}}</td>
             <td>{{$contenido->url}}</td>
             <td>
             @if(!$contenido->content_id->isEmpty())

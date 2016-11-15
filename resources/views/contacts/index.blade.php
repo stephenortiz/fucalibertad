@@ -4,9 +4,17 @@
 <div class="container contact">  
     <h3>Contactenos</h3>
     <hr>
+     <div class="row ">
+        <div class="col s12">
+             <iframe src="https://www.google.com/maps/d/embed?mid=1sHr8zHrmssRMCUkmx5NWWbNUomQ" width="100%" height="480"></iframe>
+        </div>
+           
+        </div>
     <div class="row">
         <form class="col s12 m6 l6" action="{{ url ('/contacto') }}" method="POST" accept-charset="UTF-8" >
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+       <h5>Formulario De Contacto</h5>
 
             <div class="row">
                 <div class="input-field col s6">    
@@ -35,7 +43,6 @@
                      <i class="red-text">{{$errors->first('subject')}}</i>
                      @endif
                 </div>
-
             </div>
 
             <div class="row">
@@ -69,13 +76,7 @@
 
         </form>
         <div class="col s12 m6 l6 contact-holder">
-            <h6 class="mdi-action-home">Dirección</h6>
-            <p><strong>{{$company->direccion}}</strong><br></p>
-            <h6 class="mdi-action-home">Telefono</h6>
-            <p><strong>{{$company->telefono}}</strong><br></p>
-            <h6 class="mdi-hardware-phone-android">E-mail</h6>
-            <p><strong>{{$company->email}}</strong></p>
-            
+        <img class="responsive-img z-depth-1" src="{{ asset('img/callcenter.jpg')}}"> 
         </div>
 
        

@@ -58,6 +58,7 @@ class EmployeeController extends Controller
        'nombre'   => 'required|max:50',
        'apellido' => 'required|max:50',
        'cargo'    => 'required|max:50',
+       'descripcion'    => 'required|max:50',
        'states_id'    => 'required',
        'repertorys_id'    => 'required',
        'logo'    => 'required',
@@ -89,6 +90,7 @@ class EmployeeController extends Controller
        $employees->apellido             = $request->input('apellido');
        $employees->cargo             = $request->input('cargo');
        $employees->logo              = $codigo.$nombre;
+       $employees->descripcion              = $request->input('descripcion');
        $employees->states_id              = $request->input('states_id');
        $employees->repertorys_id              = $request->input('repertorys_id');
        $employees->save();
@@ -138,6 +140,7 @@ class EmployeeController extends Controller
        'nombre'   => 'required|max:50',
        'apellido' => 'required|max:50',
        'cargo'    => 'required|max:50',
+       'descripcion'    => 'required|max:50',
        'states_id'    => 'required',
        'repertorys_id'    => 'required',
        ]);
@@ -173,8 +176,11 @@ class EmployeeController extends Controller
 
         $employees = employees::find($id);
         $employees->nombre       = $request->input('nombre');
-        $employees->apellido             = $request->input('apellido');
+        $employees->apellido          = $request->input('apellido');
         $employees->cargo             = $request->input('cargo');
+        $employees->descripcion             = $request->input('descripcion');
+        $employees->states_id             = $request->input('states_id');
+        $employees->repertorys_id         = $request->input('repertorys_id');
         if($Bandera){
           $employees->logo              = $codigo.$nombre;
         }

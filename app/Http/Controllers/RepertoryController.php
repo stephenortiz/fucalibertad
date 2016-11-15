@@ -9,7 +9,7 @@ use fucalibertad\Http\Controllers\Controller;
 use Validator;
 
 
-class ReportoryController extends Controller
+class RepertoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class ReportoryController extends Controller
     public function index()
     {
         $repertorys = repertorys::all();
-        return view('admin/menus.index',['repertorys'=>$menus]);
+        return view('admin/repertorys.index',['repertorys'=>$repertorys]);
     }
 
     /**
@@ -30,7 +30,7 @@ class ReportoryController extends Controller
     public function create()
     {
         $repertorys = new repertorys;
-        return view("admin/repertorys.save",['repertorys'=>$menus]);
+        return view("admin/repertorys.save",['repertory'=>$repertorys]);
     }
 
     /**
@@ -83,7 +83,7 @@ class ReportoryController extends Controller
     {
 
        $repertorys = repertorys::where('id', $id)->first();
-       return view("admin/repertorys.save",['repertorys'=>$repertorys]);
+       return view("admin/repertorys.save",['repertory'=>$repertorys]);
     }
 
     /**

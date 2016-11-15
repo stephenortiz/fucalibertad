@@ -1,7 +1,5 @@
 @extends('layoutadmin')
 @section('content')
-
-<main>
         <div class="container">
           <div class="row">
              <div class="col s12 m9 l10">
@@ -19,14 +17,13 @@
                       <div class="col s12">
                          <i class="material-icons prefix">account_circle</i>
                          <div class="input-field col s12">
-                             <input  id="first_name2" type="text" name="descripcion">
+                             <input  id="first_name2" type="text" name="descripcion" value="{{$category->descripcion}}">
                              <label class="active" for="first_name2">descrpción</label>
                         </div>
                         @if($errors->first('descripcion'))
                         <i class="red-text">{{$errors->first('descripcion')}}</i>
                         @endif
                       </div>
-
 
                       <div class="center">
                         <button class="btn waves-effect waves-light" type="submit" name="action">Registrar
@@ -38,6 +35,5 @@
              </div>
           </div>
         </div>
-</main>
 
 @endsection

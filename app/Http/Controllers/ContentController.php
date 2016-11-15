@@ -8,6 +8,7 @@ use fucalibertad\categories;
 use fucalibertad\repertorys;
 use fucalibertad\companys;
 use fucalibertad\detailcontents;
+use fucalibertad\states;
 use fucalibertad\Http\Requests;
 use fucalibertad\Http\Controllers\Controller;
 use Validator;
@@ -27,10 +28,12 @@ class ContentController extends Controller
               $categories = contents::find($content->id)->categories;
               $repertorys = contents::find($content->id)->repertorys;
               $details = contents::find($content->id)->details;
+              $state = contents::find($content->id)->states;
 
               $content->content_id=$details;
               $content->repertorys_id=$repertorys;
               $content->categories_id=$categories;
+              $content->states_id=$state;
           } 
 
           
@@ -46,9 +49,11 @@ class ContentController extends Controller
     {
        $categories = categories::all();
        $repertorys = repertorys::all();
+       $states = states::all();
        $contents = new contents;
        $details = new detailcontents;
-       return view("admin/contents.save",['content'=>$contents,'details'=>$details, 'categories'=>$categories,'repertorys'=>$repertorys]);
+       return view("admin/contents.save",['content'=>$contents,'details'=>$details, 'categories'=>$categories,'repertorys'=>$repertorys,'states'=>
+        $states]);
     }
 
     /**
@@ -93,6 +98,7 @@ class ContentController extends Controller
        $contents->descripcion       = $request->input('descripcion');
        $contents->categories_id       = $request->input('categories_id');
        $contents->repertorys_id       = $request->input('repertorys_id');
+       $contents->states_id       = 1;
        $contents->url       = $request->input('url');
        if($request->file('imagen') != null) { 
          $contents->imagen       = $codigo.$nombre;
@@ -124,9 +130,10 @@ class ContentController extends Controller
     {
         $categories = categories::all();
         $repertorys = repertorys::all();
+        $states = states::all();
         $details = new detailcontents;
         $contents = contents::where('id', $id)->first();
-        return view("admin/contents.save",['content'=>$contents,'details'=>$details, 'categories'=>$categories,'repertorys'=>$repertorys]);
+        return view("admin/contents.save",['content'=>$contents,'details'=>$details, 'categories'=>$categories,'repertorys'=>$repertorys,'states'=>$states]);
     }
 
     /**
@@ -143,6 +150,7 @@ class ContentController extends Controller
        'descripcion'   => 'required',
        'categories_id'   => 'required',
        'repertorys_id'   => 'required',
+       'states_id'   => 'required',
        ]);
 
         if ($validator->fails()) {
@@ -172,6 +180,7 @@ class ContentController extends Controller
        $contents->descripcion       = $request->input('descripcion');
        $contents->categories_id       = $request->input('categories_id');
        $contents->repertorys_id       = $request->input('repertorys_id');
+       $contents->states_id       = $request->input('states_id');
        $contents->url       = $request->input('url');
        if($request->file('imagen') != null) { 
          $contents->imagen       = $codigo.$nombre;

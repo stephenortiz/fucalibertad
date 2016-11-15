@@ -12,6 +12,12 @@ class detailcontents extends Model
 
     }
 
+    public function states(){
+
+         return $this->belongsTo(states::class);
+
+    }
+
    
 
 }

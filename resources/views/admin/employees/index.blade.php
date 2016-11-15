@@ -13,6 +13,7 @@
               <th data-field="name">Apellido</th>
               <th data-field="price">Logo</th>
               <th data-field="name">Cargo</th>
+              <th data-field="name">Descripción</th>
               <th data-field="price">Estado</th>
               <th data-field="price">Menú</th>
               <th></th>
@@ -30,6 +31,7 @@
             @endif
             </td>
             <td>{{$employee->cargo}}</td>
+            <td>{!! $employee->descripcion !!}</td>
             <td>{{$employee->states_id->descripcion}}</td>
             <td>{{$employee->repertorys_id->descripcion}}</td>
             <td>

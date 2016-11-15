@@ -78,7 +78,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = categories::find($id);
+        return view("admin/categories.save",['category'=>$categories]);
+
     }
 
     /**
@@ -90,7 +92,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $validator = Validator::make($request->all(),[ 
+       'descripcion'   => 'required|max:50',
+       ]);
+
+        if ($validator->fails()) {
+        return redirect('admin/categories/create')
+            ->withErrors($validator)
+            ->withInput ();
+       }
+
+       $categories = categories::find($id);
+       $categories->descripcion       = $request->input('descripcion');
+
+       $categories->update();
+
+       return redirect('admin/categories');
+
+
     }
 
     /**

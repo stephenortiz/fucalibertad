@@ -5,43 +5,56 @@
    
       <div class="row">
       <br>
+{{--*/ $contador = 0 /*--}}
 @foreach($contents as $content)
 @if($content->categories_id == 1)
 
+      {{--*/ $contador = $contador +1  /*--}}
 
+      @if($contents->count() > $contador)
+         <div class="col s12 m6">
+      @else
+         <div class="col s12 m12">
+      @endif
+    
+      
+
+      <h5>{{$content->titulo}}</h5>
+        <div class="card-panel teal">
+          <span class="white-text"> {!!$content->descripcion!!}</span>
+         
+        </div>
+      </div>
 
    
-        <div class="col m12 s12 center">
-          <h5 class="blue-text text-darken-2"> {{$content->titulo}}</h5>
-          
-          <div class="card-panel grey lighten-5">
-            
-          	 {!!$content->descripcion!!}
-          
-         </div>
-        </div>
-    
 @endif
 
 @endforeach
 
 @foreach($employees as $employee)
-  <div class="col s12 m4">
-    <h5 class="header">{{$employee->nombre}} {{$employee->apellido}}</h5>
-    <div class="card horizontal">
-      <div class="card-image">
-        <img src="{{ asset('storage/'.$employee->logo)}}">
-      </div>
-      <div class="card-stacked">
-        <div class="card-content">
-          <p>I am a very simple card. I am good at containing small bits of information.</p>
+
+
+        <div class="col s12 m4">
+          <div class="card large card blue-grey darken-1">
+            <div class="card-image">
+              <img src="{{ asset('storage/'.$employee->logo)}}">
+
+              <span class="card-title black-text text-darken-2"> </span>
+            </div>
+            <div class="card-content">
+              <p>{!! $employee->descripcion !!}</p>
+            </div>
+            <div class="card-action">
+            {{$employee->nombre}} {{$employee->apellido}}
+            <br>
+            <i><strong>{{$employee->cargo}}</strong></i>
+            </div>
+          </div>
         </div>
-        <div class="card-action">
-          <i>{{$employee->cargo}}</i>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+
+ 
 
 
 @endforeach

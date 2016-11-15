@@ -15,9 +15,13 @@
 
      <h2>Nosotros!</h2>
 @foreach($contents as $content)
-        <div class="col m4 s4" >
+        <div class="col m4 s4">
               <hr>
-	          <img class="materialboxed bordered z-depth-5" width="100%" height="100%" src="{{ asset('storage/'.$content->imagen)}}" >
+              {!!$content->titulo !!}
+              {{--*/ $descripcion = $content->descripcion /*--}}
+              {{--*/ $descripcion = str_replace('<p>', ' ', $descripcion) /*--}}
+              {{--*/ $descripcion = str_replace('</p>', ' ', $descripcion) /*--}}
+	          <img class="materialboxed bordered z-depth-5" data-caption="{{$descripcion}}" width="100%" height="100%" src="{{ asset('storage/'.$content->imagen)}}" >
 	          <hr>
         </div>
 @endforeach
